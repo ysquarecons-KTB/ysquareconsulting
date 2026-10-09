@@ -1,0 +1,43 @@
+# Publishes the site to Vercel production on every push to main.
+# Needed because the Vercel project lives on a personal Vercel account that cannot use the
+# GitHub App installed on ysquarecons-KTB. One repository secret (Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN  token created on vercel.com/account/tokens, scoped to the project's team
+# The team and project IDs below come from .vercel/project.json; they identify the project but grant no access.
+name: Déploiement Vercel (production)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_bzeIDPdYFyp1sXpkQoxlVaOV
+      VERCEL_PROJECT_ID: prj_MmNK13ZOEZTCeyVXEC4jCffdhGlA
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Mise en production
+        id: deploy
+        run: |
+          url=$(npx --yes vercel@48.5.0 deploy --prod --yes --token="${{ secrets.VERCEL_TOKEN }}")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Résumé
+        run: |
+          echo "### Site mis en ligne" >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit \`${GITHUB_SHA::7}\` publié : ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Adresse publique : https://www.ysquareconsulting.com" >> "$GITHUB_STEP_SUMMARY"

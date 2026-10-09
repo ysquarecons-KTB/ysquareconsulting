@@ -45,9 +45,8 @@
     --gray-600: #4F4946;
     --gray-800: #262322;
     --text: #141414;
-    /* Charte Y² for the hero visual: anthracite, silver, gold, Palatino */
+    /* Hero visual: silver lines and Palatino labels; accents use the site coral */
     --silver: #C3C7CE;
-    --gold: #C9A44C;
     --serif: 'Palatino Linotype', Palatino, 'Book Antiqua', 'URW Palladio L', serif;
     --radius: 8px;
     --radius-lg: 12px;
@@ -201,7 +200,7 @@
   .hero-stat-value { font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
   .hero-stat-label { font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
 
-  /* HERO VISUAL — La signature Y² (charte : anthracite, argent, or, Palatino) */
+  /* HERO VISUAL — La signature Y² (coral accent, like the rest of the site) */
   .sig { animation: fadeUp 1s .3s var(--ease) both; transition: translate .4s var(--ease); font-family: var(--serif); color: var(--silver); }
   .sig-cap { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #8A8D93; margin-bottom: 18px; }
   .sig-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr); column-gap: 44px; align-items: stretch; }
@@ -210,55 +209,55 @@
   .sig-col > .sig-node:last-child { margin-bottom: auto; }
   .sig-core-col .sig-core { margin-block: auto; }
   .sig-col { display: flex; flex-direction: column; gap: 10px; }
-  .sig-step { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .sig-step { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 4px; }
   .sig-node {
     position: relative; display: grid; grid-template-columns: 16px minmax(0, 1fr); column-gap: 10px; align-items: start;
     padding: 10px 12px; border: 1px solid rgba(195,199,206,0.28); border-radius: 4px;
     background: rgba(255,255,255,0.03); transition: border-color .3s, background .3s;
   }
-  .sig-node:hover { border-color: var(--gold); background: rgba(201,164,76,0.06); }
+  .sig-node:hover { border-color: var(--accent-light); background: rgba(255,107,116,0.06); }
   .sig-node b { grid-column: 2; display: block; font-weight: 400; font-size: 14px; color: #F2F2F2; line-height: 1.3; }
   .sig-node small { grid-column: 2; display: block; font-size: 12px; color: #9A9EA5; font-style: italic; margin-top: 2px; }
   /* Connectors: drawn by script from the real node positions; one 4s cycle reads Mémoire → Brain → Valeur */
   .sig-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
   .sig-wires .wire { fill: none; stroke: rgba(195,199,206,0.26); stroke-width: 1.2; transition: stroke .3s; }
   .sig-wires .flow {
-    fill: none; stroke: var(--gold); stroke-width: 2.4; stroke-linecap: round;
-    stroke-dasharray: 20 100; stroke-dashoffset: 20; filter: drop-shadow(0 0 3px rgba(201,164,76,0.85));
+    fill: none; stroke: var(--accent-light); stroke-width: 2.4; stroke-linecap: round;
+    stroke-dasharray: 20 100; stroke-dashoffset: 20; filter: drop-shadow(0 0 3px rgba(255,107,116,0.85));
   }
   .sig-wires .in .flow { animation: flowIn 4s linear infinite; animation-delay: calc(var(--i) * .12s); }
   .sig-wires .out .flow { animation: flowOut 4s linear infinite; animation-delay: calc(var(--i) * .12s); }
   @keyframes flowIn { 0% { stroke-dashoffset: 20; } 34%, 100% { stroke-dashoffset: -100; } }
   @keyframes flowOut { 0%, 44% { stroke-dashoffset: 20; } 78%, 100% { stroke-dashoffset: -100; } }
-  .sig-wires .port { fill: var(--gold); opacity: .75; }
-  .sig-wires .hot .wire { stroke: var(--gold); }
+  .sig-wires .port { fill: var(--accent-light); opacity: .75; }
+  .sig-wires .hot .wire { stroke: var(--accent-light); }
   .sig-col, .sig-core-col { position: relative; z-index: 1; }
   .in-col .sig-node { animation: litIn 4s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .12s); }
   .out-col .sig-node { animation: litOut 4s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .12s); }
-  @keyframes litIn { 0%, 30%, 100% { border-color: rgba(195,199,206,0.28); } 6%, 16% { border-color: rgba(201,164,76,0.75); } }
-  @keyframes litOut { 0%, 66%, 100% { border-color: rgba(195,199,206,0.28); } 76%, 88% { border-color: rgba(201,164,76,0.75); } }
-  .sig-node:hover { border-color: var(--gold) !important; }
+  @keyframes litIn { 0%, 30%, 100% { border-color: rgba(195,199,206,0.28); } 6%, 16% { border-color: rgba(255,107,116,0.75); } }
+  @keyframes litOut { 0%, 66%, 100% { border-color: rgba(195,199,206,0.28); } 76%, 88% { border-color: rgba(255,107,116,0.75); } }
+  .sig-node:hover { border-color: var(--accent-light) !important; }
   .sig-node .ni { width: 16px; height: 16px; color: var(--silver); opacity: .85; margin-top: 2px; grid-row: span 2; transition: color .3s, transform .4s var(--ease); }
-  .sig-node:hover .ni { color: var(--gold); transform: scale(1.15); }
+  .sig-node:hover .ni { color: var(--accent-light); transform: scale(1.15); }
   .sig-core-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
   .sig-core {
-    position: relative; width: 140px; padding: 20px 10px; animation: coreGlow 4s ease-in-out infinite; border: 1px solid var(--gold); border-radius: 8px;
-    background: radial-gradient(circle at 50% 30%, rgba(201,164,76,0.16), rgba(20,20,20,0) 70%), #1A1A1A;
+    position: relative; width: 140px; padding: 20px 10px; animation: coreGlow 4s ease-in-out infinite; border: 1px solid var(--accent-light); border-radius: 8px;
+    background: radial-gradient(circle at 50% 30%, rgba(255,107,116,0.16), rgba(20,20,20,0) 70%), #1A1A1A;
   }
   @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
   .sig-core::before {
     content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1.5px; pointer-events: none;
-    background: conic-gradient(from var(--a), transparent 0 70%, var(--gold) 88%, transparent 100%);
+    background: conic-gradient(from var(--a), transparent 0 70%, var(--accent-light) 88%, transparent 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
     animation: sweep 4s linear infinite;
   }
   @keyframes sweep { to { --a: 360deg; } }
   @keyframes coreGlow {
-    0%, 26%, 70%, 100% { box-shadow: 0 0 0 0 rgba(201,164,76,0); }
-    40% { box-shadow: 0 0 0 6px rgba(201,164,76,0.10), 0 0 32px rgba(201,164,76,0.35); }
+    0%, 26%, 70%, 100% { box-shadow: 0 0 0 0 rgba(255,107,116,0); }
+    40% { box-shadow: 0 0 0 6px rgba(255,107,116,0.10), 0 0 32px rgba(255,107,116,0.35); }
   }
-  .sig-core svg { width: 58px; height: 58px; color: var(--gold); display: block; margin: 0 auto 10px; animation: think 4s ease-in-out infinite; }
+  .sig-core svg { width: 58px; height: 58px; color: var(--accent-light); display: block; margin: 0 auto 10px; animation: think 4s ease-in-out infinite; }
   @keyframes think { 0%, 26%, 70%, 100% { transform: scale(1); } 40% { transform: scale(1.08); } }
   .sig-core svg .syn { animation: syn 4s ease-in-out infinite; }
   .sig-core svg .syn:nth-of-type(2) { animation-delay: .15s; }
@@ -271,7 +270,7 @@
     margin-top: 22px; display: flex; align-items: center; gap: 12px; justify-content: center;
     padding: 12px 16px; border-top: 1px solid rgba(195,199,206,0.2); font-size: 16px; color: #F2F2F2;
   }
-  .sig-out svg { width: 18px; height: 18px; color: var(--gold); flex: none; }
+  .sig-out svg { width: 18px; height: 18px; color: var(--accent-light); flex: none; }
 
   /* CERTIFICATIONS STRIP */
   .cert-strip {

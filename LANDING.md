@@ -11,11 +11,11 @@ Page unique ([index.html](index.html)) présentant Y² Consulting, cabinet de tr
 ## Structure de la page
 
 ### Navigation
-Logo Signature Y² · liens Contexte, Approche, Expertises, Notre conviction, Project Brain, Pourquoi Y² · icône LinkedIn · bascule FR/EN · bouton « Prendre contact ».
+Logo Signature Y² · liens Contexte, Approche, Expertises, Notre conviction, Project Brain, Le modèle Y² · icône LinkedIn · bascule FR/EN · bouton « Prendre contact ».
 
 ### 1. Hero
 - **Badge** : Transformation digitale · Data · IA
-- **Titre** : *L'agilité d'un cabinet expert. Une méthode éprouvée, augmentée par l'IA.*
+- **Titre** : *Le conseil IT, **augmenté**.* (« augmenté » en corail)
 - **Sous-titre** : accompagnement des programmes de transformation au Maroc et en France en Data, Project et Change Management, avec une IA intégrée dans un cadre de gouvernance rigoureux.
 - **Boutons** : « Échanger 30 minutes » · « Suivre Y² sur LinkedIn »
 - **Chiffres clés** : 10+ ans en transformation · Programmes internationaux en grands groupes · Maroc & France, double ancrage
@@ -56,24 +56,18 @@ Un programme se joue sur cinq fronts à la fois :
 ### 6. Project Brain — la méthode signature
 L'outil qui augmente chaque consultant Y² : une expertise consolidée et partagée, donc le même niveau d'exigence quel que soit l'intervenant. En option, un Brain dédié au programme du client.
 
-- **A. Comment ça fonctionne** : 01 Mémoire (contexte client + savoir-faire Y²) → 02 Brain (l'IA propose, les consultants valident) → 03 Valeur (livrables plus solides, pilotage mieux éclairé)
-- **B. Ce que ça change** : montée en compétence accélérée · qualité et efficacité des livrables · décisions mieux éclairées · **Third Eye** : détection des dérives de scope, contradictions entre workstreams et signaux de résistance
-- **C. Garanties** : gouvernance humaine (le Brain suggère, l'humain décide) · informations protégées et anonymisées · en option, un Brain déployé chez le client et opéré en autonomie
+- **Third Eye — Dérives détectées avant qu'elles coûtent** (carte mise en avant) : il repère ce que les acteurs immergés ne voient plus : dérives de scope, contradictions entre workstreams, signaux faibles de résistance au changement
+- **Vos garanties** : gouvernance humaine (le Brain suggère, l'humain décide) · informations protégées et anonymisées · en option, un Brain déployé chez le client et opéré en autonomie
+
+Le fonctionnement Mémoire → Brain → Valeur est porté par le visuel du hero.
 
 ### 7. Le modèle Y² — Des coûts optimisés, une exigence intacte
 - **En France** : équipes qualifiées au Maroc, augmentées par la méthode et pilotées par Y²
 - **Au Maroc** : l'exigence des programmes internationaux de grands groupes français
 
-### 8. Pourquoi Y² ?
-1. Une expertise certifiée, éprouvée sur le terrain
-2. Une IA gouvernée, au cœur de la méthode
-3. Un niveau d'exigence constant, quel que soit le profil
-4. Un double ancrage Maroc–France
-5. Un engagement qui va jusqu'au bout
-
 > Un partenaire de confiance pour vos transformations, au Maroc comme en France.
 
-### 9. Contact
+### 8. Contact
 *Échangeons sur vos enjeux de transformation.* Premier échange de 30 minutes · bouton e-mail · LinkedIn (Kenza Touimi Benjelloun).
 
 ### Pied de page

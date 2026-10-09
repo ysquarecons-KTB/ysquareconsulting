@@ -169,7 +169,6 @@
     font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800; color: white;
     line-height: 1.06; margin-bottom: 22px; letter-spacing: -0.035em;
   }
-  .hero h1 .soft { color: rgba(255,255,255,0.55); }
   .hero h1 em { font-style: normal; color: var(--accent-light); position: relative; white-space: nowrap; }
   .hero h1 em::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 0.02em; height: 0.06em;
@@ -194,22 +193,24 @@
   .btn-hero-outline:hover { border-color: white; background: rgba(255,255,255,0.06); }
   .btn-hero-outline svg { width: 16px; height: 16px; }
 
-  .hero-stats { display: flex; flex-wrap: wrap; row-gap: 16px; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; }
-  .hero-stat { padding-right: 20px; margin-right: 20px; border-right: 1px solid rgba(255,255,255,0.12); }
+  .hero-stats { display: flex; flex-wrap: nowrap; row-gap: 16px; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; }
+  .hero-stat { padding-right: 20px; margin-right: 20px; border-right: 1px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; }
   .hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
   .hero-stat-value { font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  .hero-stat-label { font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+  .hero-stat-label { font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-top: auto; padding-top: 4px; }
 
   /* HERO VISUAL — La signature Y² (coral accent, like the rest of the site) */
   .sig { animation: fadeUp 1s .3s var(--ease) both; transition: translate .4s var(--ease); font-family: var(--serif); color: var(--silver); }
   .sig-cap { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #8A8D93; margin-bottom: 18px; }
-  .sig-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr); column-gap: 44px; align-items: stretch; }
-  /* step labels share the top line; node stacks and the core centre in the remaining height */
-  .sig-col > .sig-step + .sig-node { margin-top: auto; }
-  .sig-col > .sig-node:last-child { margin-bottom: auto; }
+  .sig-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 44px; row-gap: 14px; align-items: stretch; }
+  /* step labels sit on their own grid row, centred over their column whatever the height below; node stacks and the core centre in the remaining height */
+  .sig-step { grid-row: 1; align-self: end; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-light); }
+  .sig-step.s-in { grid-column: 1; }
+  .sig-step.s-core { grid-column: 2; }
+  .sig-step.s-out { grid-column: 3; }
+  .sig-col, .sig-core-col { grid-row: 2; }
   .sig-core-col .sig-core { margin-block: auto; }
-  .sig-col { display: flex; flex-direction: column; gap: 10px; }
-  .sig-step { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 4px; }
+  .sig-col { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
   .sig-node {
     position: relative; display: grid; grid-template-columns: 16px minmax(0, 1fr); column-gap: 10px; align-items: start;
     padding: 10px 12px; border: 1px solid rgba(195,199,206,0.28); border-radius: 4px;
@@ -313,7 +314,6 @@
   .tagline { margin-top: 32px; font-style: italic; color: var(--gray-600); font-size: 1.05rem; display: flex; align-items: center; gap: 14px; }
   .tagline::before { content: ''; width: 28px; height: 2px; background: var(--accent); flex: none; }
   .sub-head { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 22px; }
-  .sub-head span { font-family: var(--mono); font-size: 12px; color: var(--accent-light); letter-spacing: .08em; }
   .sub-head h3 { font-size: 1.45rem; font-weight: 800; color: white; }
 
   .reveal { opacity: 0; }
@@ -417,15 +417,6 @@
   .signature .section-label { color: var(--accent-light); }
   .signature .section-label::before { color: rgba(255,255,255,0.4); }
   .signature .section-sub { color: rgba(255,255,255,0.7); }
-  .sig-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: step; }
-  .sig-step-card {
-    border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: 28px; background: var(--ink-2);
-    position: relative; transition: border-color .3s, transform .35s var(--ease);
-  }
-  .sig-step-card:hover { border-color: rgba(255,107,116,0.5); transform: translateY(-4px); }
-  .sig-step-card .num { font-family: var(--mono); font-size: 12px; color: var(--accent-light); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
-  .sig-step-card p { color: rgba(255,255,255,0.72); font-size: 15px; line-height: 1.7; }
-  .benefits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .benefit {
     border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: 28px 30px; background: var(--ink-2);
     display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 18px; position: relative; overflow: hidden;
@@ -441,6 +432,7 @@
   .benefit .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 6px; }
   .benefit h4 { font-size: 1.15rem; font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.3; }
   .benefit p { color: rgba(255,255,255,0.7); font-size: 14.5px; line-height: 1.7; }
+  .benefit.third-eye { border-color: rgba(255,107,116,0.45); max-width: 780px; margin-bottom: 8px; }
   .guarantees-lead { color: rgba(255,255,255,0.75); font-size: 1.1rem; font-style: italic; margin: -8px 0 22px; }
   .guarantees { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .guarantee {
@@ -469,22 +461,6 @@
   .model-card h3 { font-size: 1.7rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em; color: white; }
   .model-card h3::before { content: ''; display: block; width: 28px; height: 3px; background: var(--accent); margin-bottom: 18px; }
   .model-card p { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.75; max-width: 460px; position: relative; }
-
-  /* POURQUOI Y² */
-  .why { background: var(--paper); }
-  .why-list { list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 980px; counter-reset: why; }
-  .why-item {
-    display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 22px; align-items: start;
-    background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px 28px;
-    transition: border-color .3s, transform .35s var(--ease), box-shadow .3s;
-  }
-  .why-item:hover { border-color: var(--accent); transform: translateX(6px); box-shadow: 0 10px 28px rgba(20,20,20,0.06); }
-  .why-item::before {
-    counter-increment: why; content: counter(why, decimal-leading-zero);
-    font-family: var(--mono); font-size: 1.6rem; color: var(--accent); line-height: 1.2;
-  }
-  .why-item h3 { font-size: 1.15rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
-  .why-item p { color: var(--gray-600); font-size: 15px; line-height: 1.7; }
 
   /* CONTACT */
   .cta { background: var(--ink); padding: 120px 5%; position: relative; overflow: hidden; }
@@ -536,7 +512,7 @@
     .cert-item:nth-child(2) { border-right: none; }
     .cert-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.12); }
     .context-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .expertise-grid, .sig-steps, .benefits, .guarantees, .model-grid, .cta-inner { grid-template-columns: 1fr; }
+    .expertise-grid, .guarantees, .model-grid, .cta-inner { grid-template-columns: 1fr; }
     .contact-list { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.14); }
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
@@ -545,13 +521,21 @@
     nav { padding: 0 16px; }
     .nav-right .btn-primary { display: none; }
     .hero { padding-left: 16px; padding-right: 16px; }
+    .hero-stats { flex-wrap: wrap; }
     .hero-stat { padding-right: 14px; margin-right: 14px; }
-    .sig-grid { grid-template-columns: 1fr; row-gap: 22px; }
+    .sig-grid { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 22px; }
+    .sig-step.s-in, .sig-step.s-core, .sig-step.s-out { grid-column: 1; margin-bottom: -12px; }
+    .sig-step.s-in { grid-row: 1; }
+    .in-col { grid-row: 2; }
+    .sig-step.s-core { grid-row: 3; }
+    .sig-core-col { grid-row: 4; }
+    .sig-step.s-out { grid-row: 5; }
+    .out-col { grid-row: 6; }
     .sig-wires { display: none; }
     .sig-core { width: 100%; }
     .cert-item { padding: 16px 14px; column-gap: 10px; }
     .context-grid, .footer-inner { grid-template-columns: 1fr; }
-    .pillar-row, .why-item { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
+    .pillar-row { grid-template-columns: 1fr; gap: 10px; padding: 22px; }
     .pillar-num { border-right: none; font-size: 1.8rem; }
     .benefit { grid-template-columns: 1fr; row-gap: 12px; }
     .benefit-icon { grid-row: auto; }
@@ -616,7 +600,7 @@
     <li><a href="#expertises" data-i18n="nav.expertise">Expertises</a></li>
     <li><a href="#conviction" data-i18n="nav.conviction">Notre conviction</a></li>
     <li><a href="#signature">Project Brain</a></li>
-    <li><a href="#pourquoi" data-i18n="nav.why">Pourquoi Y²</a></li>
+    <li><a href="#modele" data-i18n="model.label">Le modèle Y²</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://www.linkedin.com/company/ysquareconsulting" class="nav-social" target="_blank" rel="noopener" aria-label="Y² Consulting sur LinkedIn"><svg><use href="#i-linkedin"/></svg></a>
@@ -632,7 +616,7 @@
 <section class="hero" id="home">
   <div class="hero-copy">
     <div class="hero-badge" data-i18n="hero.badge">Transformation digitale · Data · IA</div>
-    <h1 class="animate" data-i18n="hero.title">L'agilité d'un cabinet <em>expert</em>. <span class="soft">Une méthode éprouvée, augmentée par l'IA.</span></h1>
+    <h1 class="animate" data-i18n="hero.title">Le conseil IT, <em>augmenté</em>.</h1>
     <p class="animate delay-1" data-i18n="hero.sub">Data, Project et Change Management : nous accompagnons vos programmes de transformation au Maroc et en France, avec une IA intégrée dans un cadre de gouvernance rigoureux, pour un delivery de qualité, plus efficace et maîtrisé.</p>
     <div class="hero-actions animate delay-2">
       <a href="#contact" class="btn-hero-primary"><span data-i18n="hero.cta1">Échanger 30 minutes</span> <svg class="i"><use href="#i-arrow"/></svg></a>
@@ -658,15 +642,16 @@
     <div class="sig-cap" data-i18n="sig.cap">FIG.01 — La signature Y²</div>
     <div class="sig-grid">
       <svg class="sig-wires" aria-hidden="true"></svg>
+      <div class="sig-step s-in" data-i18n="sig.s1">01 Mémoire</div>
+      <div class="sig-step s-core">02 Brain</div>
+      <div class="sig-step s-out" data-i18n="sig.s3">03 Valeur</div>
       <div class="sig-col in-col">
-        <div class="sig-step" data-i18n="sig.s1">01 Mémoire</div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-target"/></svg><b data-i18n="sig.m1">Contexte du programme</b><small data-i18n="sig.m1s">enjeux, organisation</small></div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-building"/></svg><b data-i18n="sig.m2">Connaissance sectorielle</b><small data-i18n="sig.m2s">transport, services…</small></div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-layers"/></svg><b data-i18n="sig.m3">Savoir-faire Y²</b><small data-i18n="sig.m3s">Data, Projet, Change</small></div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-shield"/></svg><b data-i18n="sig.m4">Bonnes pratiques & standards</b><small>DAMA, PMP, Prosci</small></div>
       </div>
       <div class="sig-core-col">
-        <div class="sig-step">02 Brain</div>
         <div class="sig-core">
           <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-brain"/><circle class="syn" cx="15" cy="17" r="1.8" fill="currentColor"/><circle class="syn" cx="33" cy="17" r="1.8" fill="currentColor"/><circle class="syn" cx="12.5" cy="27.5" r="1.8" fill="currentColor"/><circle class="syn" cx="35.5" cy="27.5" r="1.8" fill="currentColor"/></svg>
           <b data-i18n="sig.core">La méthode Y²</b>
@@ -674,7 +659,6 @@
         </div>
       </div>
       <div class="sig-col out-col">
-        <div class="sig-step" data-i18n="sig.s3">03 Valeur</div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-rise"/></svg><b data-i18n="sig.v1">Montée en compétence accélérée</b></div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-doc"/></svg><b data-i18n="sig.v2">Qualité des livrables, efficacité de la production</b></div>
         <div class="sig-node"><svg class="ni" aria-hidden="true"><use href="#i-bulb"/></svg><b data-i18n="sig.v3">Décisions mieux éclairées</b></div>
@@ -845,48 +829,14 @@
       <p class="section-sub" data-i18n="sg.intro">Le Project Brain, c'est l'outil qui augmente chaque consultant Y². Notre expertise y est consolidée et partagée par tous nos intervenants : quel que soit le consultant, vous bénéficiez du même socle éprouvé et de la même exigence. En option, nous construisons un Brain dédié à votre programme, que vos équipes conservent et opèrent en autonomie.</p>
     </div>
 
-    <div class="sub-head"><span>A</span><h3 data-i18n="sg.h1">Comment ça fonctionne</h3></div>
-    <div class="sig-steps">
-      <article class="sig-step-card">
-        <div class="num" data-i18n="sg.s1n">01 — Mémoire</div>
-        <p data-i18n="sg.s1">Nous réunissons ce qui fait votre programme (son contexte, votre secteur) et ce qui fait Y² (notre savoir-faire et les standards de la profession).</p>
-      </article>
-      <article class="sig-step-card">
-        <div class="num">02 — Brain</div>
-        <p data-i18n="sg.s2">Le Project Brain structure cette connaissance selon la méthode Y². L'IA y travaille dans un cadre de gouvernance : elle propose, nos consultants valident.</p>
-      </article>
-      <article class="sig-step-card">
-        <div class="num" data-i18n="sg.s3n">03 — Valeur</div>
-        <p data-i18n="sg.s3">Nos consultants gagnent en pertinence et en efficacité. Votre programme en récolte les fruits : des livrables plus solides, un pilotage mieux éclairé.</p>
-      </article>
-    </div>
+    <article class="benefit third-eye">
+      <div class="benefit-icon"><svg class="i"><use href="#i-eye"/></svg></div>
+      <div class="eyebrow">Third Eye</div>
+      <h4 data-i18n="sg.b4t">Dérives détectées avant qu'elles coûtent</h4>
+      <p data-i18n="sg.b4">Il repère ce que les acteurs immergés ne voient plus : dérives de scope, contradictions entre workstreams, signaux faibles de résistance au changement.</p>
+    </article>
 
-    <div class="sub-head"><span>B</span><h3 data-i18n="sg.h2">Ce que la signature Y² change pour votre programme</h3></div>
-    <div class="benefits">
-      <article class="benefit">
-        <div class="benefit-icon"><svg class="i"><use href="#i-rise"/></svg></div>
-        <h4 data-i18n="sg.b1t">Montée en compétence accélérée</h4>
-        <p data-i18n="sg.b1">Nos consultants s'approprient rapidement votre contexte, en s'appuyant d'emblée sur l'expertise consolidée de Y².</p>
-      </article>
-      <article class="benefit">
-        <div class="benefit-icon"><svg class="i"><use href="#i-doc"/></svg></div>
-        <h4 data-i18n="sg.b2t">Qualité des livrables, efficacité de la production</h4>
-        <p data-i18n="sg.b2">Le Brain prépare, nos consultants revoient et valident. À chaque livrable, nous sommes force de proposition : vos équipes réagissent, ajustent et décident, sur la base de standards éprouvés.</p>
-      </article>
-      <article class="benefit">
-        <div class="benefit-icon"><svg class="i"><use href="#i-compass"/></svg></div>
-        <h4 data-i18n="sg.b3t">Décisions mieux éclairées</h4>
-        <p data-i18n="sg.b3">Historique des arbitrages, synthèses, points d'attention : chaque décision s'appuie sur une vision complète du programme.</p>
-      </article>
-      <article class="benefit third-eye">
-        <div class="benefit-icon"><svg class="i"><use href="#i-eye"/></svg></div>
-        <div class="eyebrow">Third Eye</div>
-        <h4 data-i18n="sg.b4t">Dérives détectées avant qu'elles coûtent</h4>
-        <p data-i18n="sg.b4">Il repère ce que les acteurs immergés ne voient plus : dérives de scope, contradictions entre workstreams, signaux faibles de résistance au changement.</p>
-      </article>
-    </div>
-
-    <div class="sub-head"><span>C</span><h3 data-i18n="sg.h3">Vos garanties</h3></div>
+    <div class="sub-head"><h3 data-i18n="sg.h3">Vos garanties</h3></div>
     <p class="guarantees-lead" data-i18n="sg.glead">L'IA au service de votre programme, sans jamais en céder la maîtrise.</p>
     <div class="guarantees">
       <article class="guarantee">
@@ -924,24 +874,7 @@
         <p data-i18n="model.mad">Une expertise éprouvée sur des programmes de grands groupes en France, et une méthode qui a fait ses preuves. Le niveau d'exigence des programmes internationaux, au service des vôtres.</p>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- POURQUOI Y² -->
-<section class="why" id="pourquoi">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-label" data-i18n="why.label">Positionnement</div>
-      <h2 class="section-title" data-i18n="why.title">Pourquoi <em>Y²</em> ?</h2>
-    </div>
-    <ol class="why-list">
-      <li class="why-item"><div><h3 data-i18n="why.1t">Une expertise certifiée, éprouvée sur le terrain</h3><p data-i18n="why.1">Plus de dix ans de programmes de transformation en grands groupes internationaux, et une certification reconnue dans chacune de nos expertises.</p></div></li>
-      <li class="why-item"><div><h3 data-i18n="why.2t">Une IA gouvernée, au cœur de notre méthode</h3><p data-i18n="why.2">Notre méthode signature augmente chaque consultant, dans un cadre où l'humain décide.</p></div></li>
-      <li class="why-item"><div><h3 data-i18n="why.3t">Un niveau d'exigence constant, quel que soit le profil</h3><p data-i18n="why.3">Chaque intervenant Y² s'appuie sur notre expertise consolidée : le Project Brain sur chaque mission, et l'encadrement d'un senior lorsque le profil le demande.</p></div></li>
-      <li class="why-item"><div><h3 data-i18n="why.4t">Un double ancrage Maroc–France</h3><p data-i18n="why.4">Une connaissance de l'intérieur des deux marchés, de leurs organisations et de leurs façons de décider.</p></div></li>
-      <li class="why-item"><div><h3 data-i18n="why.5t">Un engagement qui va jusqu'au bout</h3><p data-i18n="why.5">Nous restons aux côtés de vos équipes jusqu'au résultat, et au-delà.</p></div></li>
-    </ol>
-    <p class="tagline" data-i18n="why.tag">Un partenaire de confiance pour vos transformations, au Maroc comme en France.</p>
+    <p class="tagline" data-i18n="model.tag">Un partenaire de confiance pour vos transformations, au Maroc comme en France.</p>
   </div>
 </section>
 
@@ -994,7 +927,6 @@
         <li><a href="#approche" data-i18n="nav.approach">Approche</a></li>
         <li><a href="#conviction" data-i18n="nav.conviction">Notre conviction</a></li>
         <li><a href="#modele" data-i18n="model.label">Le modèle Y²</a></li>
-        <li><a href="#pourquoi" data-i18n="nav.why">Pourquoi Y²</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1020,10 +952,9 @@ const EN = {
   "nav.approach": "Approach",
   "nav.expertise": "Expertise",
   "nav.conviction": "Our conviction",
-  "nav.why": "Why Y²",
   "nav.cta": "Get in touch",
   "hero.badge": "Digital transformation · Data · AI",
-  "hero.title": "An agile, <em>expert</em> consultancy. <span class=\"soft\">A proven methodology, augmented by AI.</span>",
+  "hero.title": "IT consulting, <em>augmented</em>.",
   "hero.sub": "Data, Project and Change Management: we support your transformation programs across Morocco and France, with AI embedded in a rigorous governance framework, for high quality, more efficient and well-controlled delivery.",
   "hero.cta1": "Book a 30-minute call",
   "hero.cta2": "Follow Y² on LinkedIn",
@@ -1093,19 +1024,6 @@ const EN = {
   "conv.text": "AI is everywhere, but rarely capitalized on: what works only benefits whoever found it. Our conviction: we should not go without it, <strong>we should govern it</strong>. A common method, shared by all our consultants, to accelerate consistently, on a sound foundation that grows richer with every engagement.",
   "sg.title": "Your program's memory, structured by our <em>signature method</em>.",
   "sg.intro": "The Project Brain is the tool that augments every Y² consultant. Our expertise is consolidated in it and shared by all our people: whichever consultant you work with, you benefit from the same proven foundation and the same standards. As an option, we build a Brain dedicated to your program, which your teams keep and run on their own.",
-  "sg.h1": "How it works",
-  "sg.s1n": "01 — Memory",
-  "sg.s1": "We bring together what makes your program (its context, your industry) and what makes Y² (our know-how and the profession's standards).",
-  "sg.s2": "The Project Brain structures this knowledge according to the Y² method. AI works within a governance framework: it proposes, our consultants validate.",
-  "sg.s3n": "03 — Value",
-  "sg.s3": "Our consultants gain in relevance and efficiency. Your program reaps the benefits: stronger deliverables and better-informed steering.",
-  "sg.h2": "What the Y² signature changes for your program",
-  "sg.b1t": "Faster upskilling",
-  "sg.b1": "Our consultants quickly take ownership of your context, drawing from the outset on Y²'s consolidated expertise.",
-  "sg.b2t": "Quality deliverables, efficient production",
-  "sg.b2": "The Brain prepares, our consultants review and validate. For every deliverable, we come with proposals: your teams react, adjust and decide, based on proven standards.",
-  "sg.b3t": "Better-informed decisions",
-  "sg.b3": "History of trade-offs, summaries, points of attention: every decision rests on a complete view of the program.",
   "sg.b4t": "Drifts detected before they cost",
   "sg.b4": "It spots what immersed stakeholders no longer see: scope drift, contradictions between workstreams, weak signals of resistance to change.",
   "sg.h3": "Your guarantees",
@@ -1122,19 +1040,7 @@ const EN = {
   "model.frd": "Qualified teams in Morocco, augmented by our signature method and managed by Y². You optimize your costs without compromising on quality.",
   "model.ma": "You are in Morocco",
   "model.mad": "Proven expertise on large-group programs in France, and a method that has proven itself. The standards of international programs, at the service of yours.",
-  "why.label": "Positioning",
-  "why.title": "Why <em>Y²</em>?",
-  "why.1t": "Certified expertise, proven in the field",
-  "why.1": "More than ten years of transformation programs in large international groups, and a recognized certification in each of our areas of expertise.",
-  "why.2t": "Governed AI, at the heart of our method",
-  "why.2": "Our signature method augments every consultant, within a framework where people decide.",
-  "why.3t": "Consistent standards, whatever the profile",
-  "why.3": "Every Y² consultant draws on our consolidated expertise: the Project Brain on every engagement, and senior supervision when the profile calls for it.",
-  "why.4t": "A dual Morocco–France footprint",
-  "why.4": "Insider knowledge of both markets, their organizations and the way they make decisions.",
-  "why.5t": "A commitment that goes all the way",
-  "why.5": "We stay alongside your teams until the result is delivered, and beyond.",
-  "why.tag": "A trusted partner for your transformations, in Morocco as in France.",
+  "model.tag": "A trusted partner for your transformations, in Morocco and France.",
   "cta.label": "Next step",
   "cta.title": "Let's talk about your <em>transformation</em> challenges.",
   "cta.sub": "A first 30-minute conversation to understand your challenges and see how Y² can support you.",
@@ -1254,8 +1160,8 @@ const EN = {
   onScroll();
 
   const revealSel = ['.section-label', '.section-title', '.section-sub', '.callout', '.context-card', '.pillar-row',
-    '.expertise-card', '.conviction blockquote', '.sub-head', '.sig-step-card', '.benefit', '.guarantees-lead',
-    '.guarantee', '.model-card', '.why-item', '.tagline', '.cta-inner > div', '.contact-row', '.footer-inner > *'].join(',');
+    '.expertise-card', '.conviction blockquote', '.sub-head', '.benefit', '.guarantees-lead',
+    '.guarantee', '.model-card', '.tagline', '.cta-inner > div', '.contact-row', '.footer-inner > *'].join(',');
 
   const revealEls = Array.from(document.querySelectorAll(revealSel));
   revealEls.forEach(function (el) {
